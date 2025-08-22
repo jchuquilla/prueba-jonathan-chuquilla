@@ -1,5 +1,6 @@
 package com.prueba.services.impl;
 
+import com.prueba.exceptions.ModelNotFoundException;
 import com.prueba.repositories.GenericRepo;
 import com.prueba.services.GenericService;
 
@@ -16,7 +17,7 @@ public abstract class GenericServiceImpl<T, ID> implements GenericService<T, ID>
 
     @Override
     public T findById(ID id) {
-        getRepo().findById(id).orElseThrow(() -> new RuntimeException("No se encontro el registro para el ID: " + id));
+        getRepo().findById(id).orElseThrow(() -> new ModelNotFoundException("No se encontro el registro para el ID: " + id));
         return getRepo().findById(id).orElse(null);
     }
 
@@ -27,13 +28,13 @@ public abstract class GenericServiceImpl<T, ID> implements GenericService<T, ID>
 
     @Override
     public void delete(ID id) {
-        getRepo().findById(id).orElseThrow(() -> new RuntimeException("No se encontró registro con el ID: " + id));
+        getRepo().findById(id).orElseThrow(() -> new ModelNotFoundException("No se encontró registro con el ID: " + id));
         getRepo().deleteById(id);
     }
 
     @Override
     public T update(ID id, T t) {
-        getRepo().findById(id).orElseThrow(() -> new RuntimeException("No se encontró registro con el ID: " + id));
+        getRepo().findById(id).orElseThrow(() -> new ModelNotFoundException("No se encontró registro con el ID: " + id));
         return getRepo().save(t);
     }
 }

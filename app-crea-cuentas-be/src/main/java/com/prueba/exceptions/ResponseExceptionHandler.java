@@ -16,13 +16,13 @@ public class ResponseExceptionHandler extends ResponseEntityExceptionHandler {
 
     private static final Logger LOG = LoggerFactory.getLogger(ResponseExceptionHandler.class);
 
-//    @ExceptionHandler(ModelNotFoundException.class)
-//    public ResponseEntity<CustomErrorResponse> handleModelNotFoundException(ModelNotFoundException ex, WebRequest request) {
-//        CustomErrorResponse error = new CustomErrorResponse(LocalDateTime.now(), ex.getMessage(),
-//                request.getDescription(false));
-//        LOG.error("ERROR", ex);
-//        return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
-//    }
+    @ExceptionHandler(ModelNotFoundException.class)
+    public ResponseEntity<CustomErrorResponse> handleModelNotFoundException(ModelNotFoundException ex, WebRequest request) {
+        CustomErrorResponse error = new CustomErrorResponse(LocalDateTime.now(), ex.getMessage(),
+                request.getDescription(false));
+        LOG.error("ERROR", ex);
+        return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
+    }
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<CustomErrorResponse> handleAllExceptions(Exception ex, WebRequest request) {
@@ -36,6 +36,7 @@ public class ResponseExceptionHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<CustomErrorResponse> handleIllegalArgumentExceptions(IllegalArgumentException ex, WebRequest request) {
         CustomErrorResponse error = new CustomErrorResponse(LocalDateTime.now(), ex.getMessage(),
                 request.getDescription(false));
+        LOG.error("ERROR", ex);
         return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
 
