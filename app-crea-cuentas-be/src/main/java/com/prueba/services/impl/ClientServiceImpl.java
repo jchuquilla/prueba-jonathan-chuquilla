@@ -1,6 +1,7 @@
 package com.prueba.services.impl;
 
 import com.prueba.Utils.Utils;
+import com.prueba.dtos.ClientAccountDTO;
 import com.prueba.entities.Account;
 import com.prueba.entities.Client;
 import com.prueba.repositories.AccountRepo;
@@ -15,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -96,6 +98,22 @@ public class ClientServiceImpl extends GenericServiceImpl<Client, Long> implemen
             throw new Exception(ex.getMessage());
         }
         return errors;
+    }
+
+    @Override
+    public List<ClientAccountDTO> getClientAccounts() {
+        var resp = clientRepo.getClientsAccounts()
+                .stream()
+                .map(tuple -> new ClientAccountDTO(
+                        tuple.get(0, String.class),
+                        tuple.get(1,String.class),
+                        tuple.get(2, String.class),
+                        tuple.get(3, Integer.class),
+                        tuple.get(4, String.class),
+                        tuple.get(5, String.class),
+                        tuple.get(6, Timestamp.class).toLocalDateTime()
+                )).toList();
+        return resp;
     }
 
     private String generateAccountNumber() {

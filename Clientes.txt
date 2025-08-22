@@ -1,0 +1,4 @@
+Janis,Chuquilla,1726889015,27,2025-08-22,ejemplo@mail.com
+Jonathan,Chuquilla,1724004963,32,2025-08-22,jchuquilla@live.com
+Fredy,Chuquilla,1710523562,58,2025-08-22,ejemplo2@mail.com
+Marianela,Lopez,1725839524,32,2025-08-22,mlopez1931@hotmail.com

@@ -3,6 +3,7 @@ package com.prueba.services.impl;
 import com.prueba.exceptions.ModelNotFoundException;
 import com.prueba.repositories.GenericRepo;
 import com.prueba.services.GenericService;
+import org.springframework.data.domain.Sort;
 
 import java.util.List;
 
@@ -13,6 +14,11 @@ public abstract class GenericServiceImpl<T, ID> implements GenericService<T, ID>
     @Override
     public List<T> findAll() {
         return getRepo().findAll();
+    }
+
+    @Override
+    public List<T> findAll(Sort sort) {
+        return getRepo().findAll(sort);
     }
 
     @Override
