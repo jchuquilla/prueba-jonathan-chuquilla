@@ -1,0 +1,14 @@
+/* upload-txt.component.css */
+.upload-container {
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 12px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+.upload-container input[type="file"] {
+  margin-bottom: 12px;
+}
+.upload-container button {
+  margin-top: 8px;
+}
